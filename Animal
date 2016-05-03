@@ -47,6 +47,7 @@ namespace heritageAnimal
 
             public void SetAge(int monAge)
             {
+                //age est en int
                 age = monAge;
             }
             public int GetAge()
