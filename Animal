@@ -1,0 +1,138 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace heritageAnimal
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            ArrayList zoo = new ArrayList();
+            zoo.Add(new Molosse());
+            zoo.Add(new Serpent(Serpent.Race.Boa));
+            zoo.Add(new Serpent(Serpent.Race.Couleuvre));
+            zoo.Add(new Chien());
+            zoo.Add(new Chien());
+            zoo.Add(new Reptile(230));
+            zoo.Add(new Mamifere("poil long"));
+
+            foreach (Animal ani in zoo)
+            {
+                Console.WriteLine(ani.GetNom());
+            }
+
+            Console.ReadLine();
+
+        }
+
+        class Animal
+        {
+            private string petitnom;
+            private int age;
+            private float poids;
+
+            public void SetNom(String monNom)
+            {
+                petitnom = monNom; 
+            }
+            public String GetNom()
+            {
+                return petitnom;
+            }
+
+            public void SetAge(int monAge)
+            {
+                age = monAge;
+            }
+            public int GetAge()
+            {
+                return age;
+            }
+
+            public void SetPoids(float monPoids)
+            {
+                poids = monPoids;
+            }
+            public float GetPoids()
+            {
+                return poids;
+            }
+        }
+
+        class Mamifere : Animal
+        {
+            private string typePoile;
+
+            public Mamifere(string tp)
+            {
+                typePoile = tp;
+            }
+
+
+        }
+
+        class Reptile : Animal
+        {
+
+            private float longeur;
+
+
+            public Reptile(float l)
+            {
+                longeur = l;
+            }
+
+            public void Attaquer()
+            {
+                Console.WriteLine("J attaque");
+            }
+
+        }
+
+        class Molosse : Mamifere
+        {
+            private string couleur;
+            public Molosse() : base("poil ras")
+            {
+                couleur = "Gris";
+            }
+        }
+        class Serpent : Reptile
+
+
+        {
+            public enum Race { Boa, Phyton, Cobra, Mamba, Couleuvre, Sonnette };
+            private Race maRace;
+            public Serpent() : base(340)
+            {
+                maRace = Race.Boa;
+            }
+
+            public Serpent(Race mr) : base(450)
+            {
+                maRace = mr;
+                Console.WriteLine("Bonjour je suis un serpent");
+            }
+
+            public void setRace(Race maNewRace)
+            {
+                maRace = maNewRace;
+            }
+        }
+
+
+        class Chien : Molosse
+        {
+            public Chien()
+            {
+                Console.WriteLine("Bonjour je suis un chien");
+            }
+        }
+
+    }
+}
